@@ -31,6 +31,7 @@ APP_NAME = "Upward Scoreboard"
 APP_PORT = 8765
 BASE_DIR = Path(__file__).resolve().parent
 ASSETS_DIR = BASE_DIR / "assets"
+PROGRAM_LOGO = ASSETS_DIR / "branding" / "upward-scoreboard-logo.png"
 
 
 def application_data_dir() -> Path:
@@ -477,7 +478,7 @@ class DesktopApi:
             controller_height = max(520, controller_screen.height - 60)
             self.controller_window = webview.create_window(
                 "Upward Scoreboard Controller",
-                f"{self.base_url}/Scoreboard%20Controller.html?v=11",
+                f"{self.base_url}/Scoreboard%20Controller.html?v=12",
                 js_api=self,
                 screen=controller_screen,
                 width=controller_width,
@@ -990,7 +991,7 @@ def main() -> None:
     webview.settings["OPEN_EXTERNAL_LINKS_IN_BROWSER"] = False
     api.selector_window = webview.create_window(
         "Choose Scoreboard Display",
-        f"{base_url}/assets/startup.html?v=2",
+        f"{base_url}/assets/startup.html?v=3",
         js_api=api,
         width=620,
         height=560,
@@ -1005,6 +1006,7 @@ def main() -> None:
             private_mode=False,
             storage_path=str(WEBVIEW_STORAGE_DIR),
             debug=False,
+            icon=str(PROGRAM_LOGO),
         )
     finally:
         server.shutdown()

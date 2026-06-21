@@ -12,6 +12,7 @@ A cross-platform basketball scoreboard built with Python, HTML, CSS, JavaScript,
 - Intermission music, introduction music, anthem, buzzer, and volume controls
 - Player introductions and full-screen picture presentation
 - Custom cover logo and flag image
+- Dedicated program branding kept separate from the user-replaceable cover logo
 - Multi-monitor selection, display moving, and controller-only testing mode
 - Keyboard controls for common in-game actions
 
@@ -335,6 +336,7 @@ Instead of using the managers, you can place files directly:
 | National anthem | `assets/anthem.mp3` | Replace in place |
 | Flag image | `assets/american flag.jpg` | Replace in place |
 | Cover logo | `assets/logo.png` | Replace in place |
+| Program logo | `assets/branding/upward-scoreboard-logo.png` | Built-in app branding; separate from the cover logo |
 | Slideshow pictures | `assets/Pictures/` | `.jpg`, `.jpeg`, or `.png` |
 
 ---
@@ -350,6 +352,7 @@ Instead of using the managers, you can place files directly:
 │   ├── display.html               # Audience-facing scoreboard
 │   ├── display_app.js             # Display updates and overlays
 │   ├── team_editor.html/js        # Team, roster, and logo management
+│   ├── branding/                   # Program logo (not the replaceable cover logo)
 │   ├── music_manager.html/js      # Music and anthem management
 │   ├── cover_manager.html/js      # Flag and cover-logo management
 │   ├── introductions.html/js      # Player introductions
