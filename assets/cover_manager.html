@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="music_manager.css?v=4">
+</head>
+<body>
+    <header class="editor-header">
+        <div>
+            <div class="eyebrow">Scoreboard Setup</div>
+            <h1>Cover Manager</h1>
+            <p>Replace the flag and logo images shown on the scoreboard display.</p>
+        </div>
+    </header>
+    <div class="tab-bar">
+        <button class="tab active" data-tab="flag">Flag Image</button>
+        <button class="tab" data-tab="logo">Cover Logo</button>
+    </div>
+    <main>
+        <div id="status" class="status" aria-live="polite"></div>
+
+        <div id="panel-flag" class="panel active">
+            <p class="panel-hint">Shown full-screen when the National Anthem plays.</p>
+            <div class="panel-actions">
+                <label class="add-btn">
+                    <span>Replace Flag Image</span>
+                    <input type="file" accept=".jpg,.jpeg,.png" id="add-flag-file">
+                </label>
+            </div>
+            <div id="flag-status-area" class="track-list"></div>
+        </div>
+
+        <div id="panel-logo" class="panel">
+            <p class="panel-hint">Shown on the cover screen and countdown overlay.</p>
+            <div class="panel-actions">
+                <label class="add-btn">
+                    <span>Replace Cover Logo</span>
+                    <input type="file" accept=".jpg,.jpeg,.png" id="add-logo-file">
+                </label>
+            </div>
+            <div id="logo-status-area" class="track-list"></div>
+        </div>
+    </main>
+    <script src="cover_manager_app.js?v=1"></script>
+</body>
+</html>

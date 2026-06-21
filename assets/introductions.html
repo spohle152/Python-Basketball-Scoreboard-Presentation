@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="introductions.css?v=10">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction Selector</title>
+</head>
+<body id="body">
+    <!-- Sticky preview keeps the live display visible while scrolling player buttons. -->
+    <div class="preview_window">
+        <h1>Teams and Players</h1>
+        <iframe id="preview" src="display.html?v=7"></iframe>
+        <div class="audio">
+                <button id="intros">Introduction Music</button>
+                <button id="clear">Clear Audio</button>
+            </div>
+    </div>
+    <!-- teams.json defines the `teams` variable consumed by introductions_app.js. -->
+    <script type="text/javascript" src="teams.json"></script>
+    <script src="introductions_app.js?v=10"></script>
+</body>
+</html>

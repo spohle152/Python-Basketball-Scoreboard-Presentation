@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams & Rosters</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="team_editor.css?v=7">
+</head>
+<body>
+    <header class="editor-header">
+        <div>
+            <div class="eyebrow">Scoreboard Setup</div>
+            <h1>Teams & Rosters</h1>
+            <p>Manage team names, logos, and player introductions.</p>
+        </div>
+        <div class="header-actions">
+            <button id="add-team" class="secondary" type="button">Add Team</button>
+            <button id="save" class="primary" type="button">Save Changes</button>
+        </div>
+    </header>
+    <main>
+        <div id="status" class="status" aria-live="polite"></div>
+        <div id="teams" class="teams"></div>
+    </main>
+    <template id="team-template">
+        <section class="team-card">
+            <div class="team-heading">
+                <label>
+                    <span>Team Name</span>
+                    <input class="team-name" type="text" maxlength="80" placeholder="Team name">
+                </label>
+                <button class="danger remove-team" type="button">Remove Team</button>
+            </div>
+            <div class="logo-editor">
+                <div class="logo-preview empty" aria-label="Team logo preview">
+                    <img alt="">
+                    <span>No logo</span>
+                </div>
+                <div class="logo-actions">
+                    <div>
+                        <h2>Team Logo</h2>
+                        <p>PNG, JPG, or WebP. The display converts it to grayscale automatically.</p>
+                    </div>
+                    <div class="logo-buttons">
+                        <label class="secondary file-button">
+                            <span>Choose Logo</span>
+                            <input class="logo-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp">
+                        </label>
+                        <button class="secondary remove-logo" type="button">Remove Logo</button>
+                    </div>
+                </div>
+            </div>
+            <div class="players-heading">
+                <h2>Players</h2>
+                <button class="secondary add-player" type="button">Add Player</button>
+            </div>
+            <div class="players"></div>
+        </section>
+    </template>
+    <template id="player-template">
+        <div class="player-row">
+            <label>
+                <span>#</span>
+                <input class="player-number" type="text" maxlength="4" placeholder="##">
+            </label>
+            <label>
+                <span>First Name</span>
+                <input class="first-name" type="text" maxlength="60" placeholder="First name">
+            </label>
+            <label>
+                <span>Last Name</span>
+                <input class="last-name" type="text" maxlength="60" placeholder="Last name">
+            </label>
+            <button class="icon-button remove-player" type="button" aria-label="Remove player">×</button>
+        </div>
+    </template>
+    <script src="team_editor.js?v=7"></script>
+</body>
+</html>

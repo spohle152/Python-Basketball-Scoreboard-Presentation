@@ -1,0 +1,3 @@
+teams = '[\
+    {"FirstName" : "John", "LastName" : "Smith", "TeamName" : "Falcons"},\
+    {"FirstName" : "Jane", "LastName" : "Doe", "TeamName" : "Redbirds Boilermakers"}]';

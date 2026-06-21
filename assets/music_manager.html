@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="music_manager.css?v=6">
+</head>
+<body>
+    <header class="editor-header">
+        <div>
+            <div class="eyebrow">Scoreboard Setup</div>
+            <h1>Music Manager</h1>
+            <p>Add or remove tracks for intermission and introduction music.</p>
+            <div id="now-playing" class="now-playing" aria-live="polite"></div>
+        </div>
+    </header>
+    <div class="tab-bar">
+        <button class="tab active" data-tab="music">Intermission Music</button>
+        <button class="tab" data-tab="intros">Introduction Music</button>
+        <button class="tab" data-tab="anthem">National Anthem</button>
+    </div>
+    <main>
+        <div id="status" class="status" aria-live="polite"></div>
+
+        <div id="panel-music" class="panel active">
+            <div class="panel-actions">
+                <label class="add-btn" id="add-music-label">
+                    <span>+ Add Track</span>
+                    <input type="file" accept=".mp3" id="add-music-file">
+                </label>
+            </div>
+            <div id="music-list" class="track-list"></div>
+        </div>
+
+        <div id="panel-intros" class="panel">
+            <div class="panel-actions">
+                <label class="add-btn" id="add-intros-label">
+                    <span>+ Add Track</span>
+                    <input type="file" accept=".mp3" id="add-intros-file">
+                </label>
+            </div>
+            <div id="intros-list" class="track-list"></div>
+        </div>
+
+        <div id="panel-anthem" class="panel">
+            <div class="panel-actions">
+                <label class="add-btn" id="add-anthem-label">
+                    <span>Replace Anthem File</span>
+                    <input type="file" accept=".mp3" id="add-anthem-file">
+                </label>
+            </div>
+            <div id="anthem-status-area" class="track-list"></div>
+        </div>
+
+    </main>
+    <script src="music_manager_app.js?v=6"></script>
+</body>
+</html>

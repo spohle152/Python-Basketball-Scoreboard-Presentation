@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="display_styles.css?v=9">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Saira:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <title>Scoreboard</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!-- Main scoreboard grid: possession/bonus and team names live above the clock. -->
+    <div class="top">
+        <div class="top_side" id="top_left">
+            <h3 id="left_team_name">Home</h3>
+            <div class="team-indicators">
+                <div class="possession-indicator">
+                    <img style="transform: scaleX(-1);" src="inactive_possession.png" id="left_possession" alt="Home possession">
+                    <span>Possession</span>
+                </div>
+                <p id="left_bonus"></p>
+            </div>
+        </div>
+        <div class="time">
+            <h1 id="clock">8:00</h1>
+            <div class="period">
+                <h3 id="period">Period: 1</h3>
+            </div>
+        </div>
+        <div class="top_side" id="top_right">
+            <h3 id="right_team_name">Away</h3>
+            <div class="team-indicators">
+                <p id="right_bonus"></p>
+                <div class="possession-indicator">
+                    <img src="inactive_possession.png" id="right_possession" alt="Visitor possession">
+                    <span>Possession</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Large left/right scores; display_app.js swaps home/visitor data when needed. -->
+    <div class="middle">
+        <div class="left score" id="middle_left">
+            <h1 id="left_score">0</h1>
+        </div>
+        <div class="right score" id="middle_right">
+            <h1 id="right_score">0</h1>
+        </div>
+    </div>
+    <!-- Secondary stats row. The middle player-foul panel can be hidden by controls. -->
+    <div class="bottom">
+        <div class="left bottom_side" id="bottom_left">
+            <div class="other_stats tol-stat">
+                <h3 class="tol_label">Timeouts Left:&nbsp;</h3>
+                <h2 id="left_tol">1</h2>
+            </div>
+            <div class="other_stats foul-stat">
+                <h3 class="foul_label">Fouls:&nbsp;</h3>
+                <h2 id="left_team_fouls">0</h2>
+            </div>
+        </div>
+        <div class="fouls" id="player_fouls_container" style="display:none;opacity:0">
+            <h3>Player Fouls</h3>
+            <h2 id="player_fouls"></h2>
+        </div>
+        <div class="right bottom_side" id="bottom_right">
+            <div class="other_stats foul-stat">
+                <h3 class="foul_label">Fouls:&nbsp;</h3>
+                <h2 id="right_team_fouls">0</h2>
+            </div>
+            <div class="other_stats tol-stat">
+                <h3 class="tol_label">Timeouts Left:&nbsp;</h3>
+                <h2 id="right_tol">1</h2>
+            </div>
+        </div>
+    </div>
+    <!-- Full-screen overlays toggled by the controller through BroadcastChannel. -->
+    <div class="cover_image" id="cover_image">
+        <div class="cover_image_img"><img src="logo.png" width="auto" height="45dvh"></div>
+    </div>    
+    <div class="flag" id="flag"></div>
+    <div class="countdown_image" id="countdown_image">
+        <h1 id="time_til_game">0.0</h1>
+        <div class="countdown_image_img"><img src="logo.png" width="auto" height="45dvh"></div>
+    </div>  
+    <div class="team_intros" id="team_intros">
+        <h3 id="team_name">Example</h3>
+        <hr>
+        <h1 id="first_name">Seth</h1>
+        <h2 id="last_name">Pohle</h2>
+    </div>
+    <div class="pictures" id="pictures">
+        <img src="background.jpg" alt="" class="picture_picture" id="picture">
+    </div>
+</body>
+<script src="display_app.js?v=9"></script>
+</html>

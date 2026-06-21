@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="assets/styles.css?v=15">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Scoreboard</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="main">
+    <!-- Operator controls for audio playback, timeout timers, volumes, and preview. -->
+    <div class="header">
+        <div class="control-panel audio-panel">
+            <div class="panel-title"><span>Music</span><button id="manage_music">Manager</button></div>
+            <div class="audio"><button id="music">Intermission Music</button></div>
+            <div class="audio"><button id="intros">Introduction Music</button></div>
+            <div class="audio"><button id="anthem">National Anthem</button></div>
+            <div class="audio"><button id="clear">Clear Audio</button></div>
+        </div>
+        <div class="control-panel audio-panel">
+            <div class="panel-title">Timers &amp; Buzzer</div>
+            <div class="audio"><button id="buzzer">Buzzer</button></div>
+            <div class="audio"><button id="timeoutThirty">0:30 Timer</button></div>
+            <div class="audio"><button id="timeoutFourtyFive">0:45 Timer</button></div>
+            <div class="audio"><button id="timeoutMinute">1:00 Timer</button></div>
+        </div>
+        <div class="control-panel volume-panel">
+            <div class="panel-title">Volume</div>
+            <div class="slidecontainer">
+                <p>Buzzer Volume</p>
+                <input type="range" min="0" max="100" class="slider" id="buzzervol">
+            </div>
+            <div class="slidecontainer">
+                <p>Music Volume</p>
+                <input type="range" min="0" max="100" class="slider" id="musicvol">
+            </div>
+            <div class="slidecontainer">
+                <p>Introductions Volume</p>
+                <input type="range" min="0" max="100" class="slider" id="introvol">
+            </div>
+            <div class="slidecontainer">
+                <p>Anthem Volume</p>
+                <input type="range" min="0" max="100" class="slider" id="anthemvol">
+            </div>
+        </div>
+        <div class="control-panel preview-panel">
+            <div class="panel-title">Display Preview</div>
+            <iframe id="preview" src="assets/display.html?v=9"></iframe>
+        </div>
+    </div>
+    <!-- Global display controls that affect both teams. -->
+    <div class="subheader">
+        <div class="global-control">
+            <button id="show_score">Show Score</button>
+        </div>
+        <div class="global-control period_div">
+            <div class="period"><button id="m_per">-</button></div>
+            <div><h3 id="num_per">Period: 1</h3></div>
+            <div><h3>/</h3></div>
+            <div><input id="total_per" style="width:50px" type="number" value="4"></div>
+            <div class="period"><button id="p_per">+</button></div>
+        </div>
+        <div class="global-control global-toggle-row">
+            <button id="show_foul">Show Fouls</button>
+            <button id="show_tol">Show TOL</button>
+        </div>
+    </div>
+    <div class="container">
+        <!-- left_controller.js and right_controller.js inject the team panels here. -->
+        <div id="left"></div>
+        <div class="time">
+            <div class="section-title">Game Clock</div>
+            <div class="clock-row">
+                <button class="possession" id="left_possession" aria-label="Home possession">&lt;</button>
+                <div id="time_display">8:00.0</div>
+                <button class="possession" id="right_possession" aria-label="Visitor possession">&gt;</button>
+            </div>
+            <div class="time-input-row">
+                <span>Set Time</span>
+                <input type="number" id="min" name="min" class="time_enter" value="8">
+                <span>:</span>
+                <input type="number" id="sec" name="sec" class="time_enter" value="0">
+                <span>.</span>
+                <input type="number" id="tenth" name="tenth" class="time_enter" value="0">
+                <button id="update_time">Update</button>
+            </div>
+            <div class="action-row clock-actions">
+                <button id="time_in">Time In</button>
+                <button id="freeze">Freeze</button>
+                <button id="cover">Cover</button>
+                <button id="flag">Flag</button>
+                <button id="manage_cover">Cover Manager</button>
+            </div>
+            <div class="countdown-row">
+                <span>Countdown</span>
+                <input type="time" id="countdown_time" class="countdown_time" value="09:00">
+                <button id="countdown">Start</button>
+            </div>
+            <div class="section-title">Display Tools</div>
+            <div class="button-grid two-col display-tools">
+                <div class="open-display"><button id="open_display">Open Display</button></div>
+                <div><button id="open_introductions">Introductions</button></div>
+                <div><button id="open_pictures">Pictures</button></div>
+                <div class="manage-teams"><button id="manage_teams">Teams</button></div>
+            </div>
+            <div class="section-title">Game Control</div>
+            <div class="button-grid two-col">
+                <button id="reset_fouls" class="footer">Reset Fouls</button>
+                <button id="reset" class="footer">Reset Game</button>
+                <div class="status-box game-status">
+                    <p>Score Differential</p>
+                    <p id="differential">0</p>
+                </div>
+            </div>
+        </div>
+        <div id="right"></div>
+    </div>
+</div>
+
+<div id="player-picker" class="player-picker-overlay">
+    <div class="player-picker-card">
+        <div class="player-picker-title" id="player-picker-title">Select Player</div>
+        <div id="player-picker-list" class="player-picker-list"></div>
+        <div class="player-picker-footer">
+            <button id="player-picker-team">Add to Team</button>
+            <button id="player-picker-cancel">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div id="custom-confirm" class="dialog-overlay">
+    <div class="dialog-card">
+        <p id="dialog-confirm-msg" class="dialog-message"></p>
+        <div class="dialog-actions">
+            <button id="dialog-confirm-ok" class="dialog-btn-ok">OK</button>
+            <button id="dialog-confirm-cancel" class="dialog-btn-cancel">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div id="custom-alert" class="dialog-overlay">
+    <div class="dialog-card">
+        <p id="dialog-alert-msg" class="dialog-message"></p>
+        <button id="dialog-alert-ok" class="dialog-btn-ok">OK</button>
+    </div>
+</div>
+
+<div id="custom-prompt" class="dialog-overlay">
+    <div class="dialog-card">
+        <p id="dialog-prompt-msg" class="dialog-message"></p>
+        <input id="dialog-prompt-input" type="text" class="dialog-input" autocomplete="off">
+        <div class="dialog-actions">
+            <button id="dialog-prompt-ok" class="dialog-btn-ok">OK</button>
+            <button id="dialog-prompt-cancel" class="dialog-btn-cancel">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div id="display-picker" class="display-picker-overlay">
+    <div class="display-picker-card">
+        <div class="display-picker-title">Select Display Output</div>
+        <div id="display-picker-list" class="display-picker-list"></div>
+        <p id="display-picker-error" class="display-picker-error"></p>
+        <button id="display-picker-close">Cancel</button>
+    </div>
+</div>
+</body>
+<!-- teams.json defines the `teams` variable consumed by the controller scripts. -->
+<script type="text/javascript" src="assets/teams.json"></script>
+<script src="assets/left_controller.js"></script>
+<script src="assets/right_controller.js"></script>
+<script src="assets/app.js?v=16"></script>
+</html>

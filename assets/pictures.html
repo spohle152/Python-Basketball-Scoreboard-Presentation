@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="pictures.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture Selector</title>
+</head>
+<body id="body">
+    <!-- Sticky preview keeps the display visible while selecting picture overlays. -->
+    <div class="preview_window">
+        <div class="preview-heading">
+            <h1>Pictures</h1>
+            <label class="add-picture-btn">
+                <span>+ Add Picture</span>
+                <input type="file" id="add-picture-file" accept=".jpg,.jpeg,.png">
+            </label>
+            <div id="pic-status" class="pic-status" aria-live="polite"></div>
+        </div>
+        <iframe id="preview" src="display.html?v=7"></iframe>
+    </div>
+    <!-- teams.json is included for consistency with the other selector pages. -->
+    <script type="text/javascript" src="teams.json"></script>
+    <script src="pictures_app.js"></script>
+</body>
+</html>

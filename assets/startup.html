@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Display</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="startup.css?v=2">
+</head>
+<body>
+    <main class="startup-card">
+        <div class="eyebrow">Upward Scoreboard</div>
+        <h1>Choose the display screen</h1>
+        <p class="intro">The scoreboard will open fullscreen on this screen. The controller will open on another screen when one is available.</p>
+        <div id="screen-list" class="screen-list" aria-live="polite">
+            <div class="loading">Detecting displays…</div>
+        </div>
+        <p id="error" class="error" role="alert"></p>
+        <button id="launch" type="button" disabled>Launch Scoreboard</button>
+    </main>
+    <script src="startup.js?v=2"></script>
+</body>
+</html>
