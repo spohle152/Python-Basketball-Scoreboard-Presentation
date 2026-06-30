@@ -1,38 +1,15 @@
 # Upward Scoreboard
 
-A cross-platform basketball scoreboard built with Python, HTML, CSS, JavaScript, and [pywebview](https://pywebview.flowrl.com/). Run the operator controller on one screen while the audience-facing scoreboard fills another, or use controller-only mode for setup and testing.
-
-## Features
-
-- Fullscreen scoreboard output with a live controller preview
-- Scores, game clock, period, possession, fouls, bonus, and timeouts-left controls
-- Team and roster editor with jersey numbers and team-logo watermarks
-- Individual player-foul callouts on the display
-- Saved game state that survives app restarts
-- Intermission music, introduction music, anthem, buzzer, and volume controls
-- Player introductions and full-screen picture presentation
-- Custom cover logo and flag image
-- Dedicated program branding kept separate from the user-replaceable cover logo
-- Multi-monitor selection, display moving, and controller-only testing mode
-- Keyboard controls for common in-game actions
-
-## Contents
-
-- [Requirements](#requirements)
-- [First-Time Setup](#first-time-setup)
-- [Starting the Scoreboard](#starting-the-scoreboard)
-- [Controller Overview](#controller-overview)
-- [Keyboard Shortcuts](#keyboard-shortcuts)
-- [Media and Display Tools](#media-and-display-tools)
-- [Persistent Data](#persistent-data)
-- [Project Structure](#project-structure)
-- [Troubleshooting](#troubleshooting)
+A basketball scoreboard desktop app built with pywebview. The controller runs in a native window on one monitor; the scoreboard displays fullscreen on a second monitor.
 
 ---
 
 ## Requirements
 
-- **Python 3.10 or later** — check with `python3 --version` (macOS/Linux) or `python --version` (Windows)
+- **Python 3.10 or later**
+  - macOS / Linux: check with `python3 --version`
+  - Windows: check with `python --version` or `py --version`
+  - Download from [python.org](https://www.python.org/downloads/) if not installed
 
 ### macOS
 No additional system packages required. pywebview uses the built-in WKWebView engine.
@@ -61,46 +38,17 @@ sudo pacman -S python-gobject webkit2gtk
 
 ---
 
-## First-Time Setup
-
-Download or clone the repository, open a terminal in the project folder, and run:
-
-**macOS / Linux:**
-```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
-```
-
-**Windows (Command Prompt):**
-```bat
-python -m venv .venv
-.venv\Scripts\python -m pip install -r requirements.txt
-```
-
-This only needs to be done once.
-
----
-
 ## Starting the Scoreboard
 
-**macOS** — double-click `start_scoreboard.command`, or from Terminal:
-```bash
-.venv/bin/python app.py
-```
+**macOS** — double-click `start_scoreboard.command`.
 
-**Windows** — double-click `start_scoreboard.bat`, or from Command Prompt:
-```bat
-.venv\Scripts\python app.py
-```
+**Windows** — double-click `start_scoreboard.bat`.
 
-**Linux** — run `start_scoreboard.sh` (mark it executable first with `chmod +x start_scoreboard.sh`), or from a terminal:
-```bash
-.venv/bin/python app.py
-```
+**Linux** — double-click `start_scoreboard.sh` in your file manager (mark it executable first with `chmod +x start_scoreboard.sh` if needed), or run it from a terminal.
+
+On the **first launch**, the start script automatically creates a virtual environment and installs all dependencies — no manual setup required. Subsequent launches start immediately.
 
 At startup, a screen-picker window appears. Click the screen where you want the scoreboard to appear, then click **Launch Scoreboard**. Choose **No Display** to run the controller alone (useful for setup and testing).
-
-For a normal two-screen setup, extend your desktop instead of mirroring it before launching the app. The controller opens on a screen other than the selected scoreboard display when one is available.
 
 ---
 
@@ -237,15 +185,13 @@ Located in the clock column below the countdown.
 
 ---
 
-## Media and Display Tools
-
-### Music Manager
+## Music Manager
 
 Opened from the **Manager** button in the Music panel.
 
 A **Now Playing** indicator at the top of the window shows the name of the track currently playing, along with whether it is an Intermission or Introduction track. The indicator updates in real time as tracks change and clears when audio is stopped.
 
-#### Intermission Music tab
+### Intermission Music tab
 Add `.mp3` files to be played randomly during intermissions. Files are stored in `assets/Music/`. Each track has two buttons:
 
 - **▶ Play** — immediately plays that specific track on the controller (overrides shuffle). The button highlights green and shows **▶ Playing** while the track is active.
@@ -254,29 +200,29 @@ Add `.mp3` files to be played randomly during intermissions. Files are stored in
 
 Adding or removing tracks immediately re-enables or disables the Intermission Music button on the controller.
 
-#### Introduction Music tab
+### Introduction Music tab
 Add `.mp3` files to be played during player introductions. Files are stored in `assets/Intros/`. Each track has the same **▶ Play / ▶ Playing** and **Delete** buttons as described above.
 
 Adding or removing tracks immediately re-enables or disables the Introduction Music button on the controller.
 
-#### National Anthem tab
+### National Anthem tab
 Replace the anthem file (`assets/anthem.mp3`). Click **Replace Anthem File** and select an `.mp3`. The controller reloads the audio automatically and re-enables the National Anthem button without restarting the app.
 
 ---
 
-### Cover Manager
+## Cover Manager
 
 Opened from the **Cover Manager** button in the clock panel.
 
-#### Flag Image tab
+### Flag Image tab
 Replace the full-screen flag image (`assets/american flag.jpg`) shown when the anthem plays. Accepts `.jpg`, `.jpeg`, or `.png`. The display updates immediately after upload and the Flag button on the controller is re-enabled.
 
-#### Cover Logo tab
+### Cover Logo tab
 Replace the logo (`assets/logo.png`) shown on the Cover screen and the Countdown overlay. Accepts `.jpg`, `.jpeg`, or `.png`. The display updates immediately after upload.
 
 ---
 
-### Introductions Window
+## Introductions Window
 
 Opened from **Introductions** in Display Tools. Shows buttons for every player on the currently selected teams.
 
@@ -285,18 +231,9 @@ Opened from **Introductions** in Display Tools. Shows buttons for every player o
 - **Introduction Music** plays a random intro track.
 - **Clear Audio** fades out all playing audio (same as Clear Audio on the main controller).
 
-### Pictures Window
+---
 
-Opened from **Pictures** in Display Tools.
-
-- Add JPG, JPEG, or PNG images to the picture library.
-- Click an image to show it full-screen on the scoreboard display.
-- Click the active image again to dismiss it.
-- Delete pictures that are no longer needed.
-
-Picture files are stored in `assets/Pictures/`.
-
-### Team & Roster Editor
+## Team & Roster Editor
 
 Opened from **Teams** in Display Tools.
 
@@ -321,8 +258,6 @@ Team and roster data, team logos, and asset name records are stored in the OS ap
 
 To reset all saved data, delete the folder above and restart.
 
-Music, introduction tracks, the anthem, cover images, and slideshow pictures are stored inside the repository's `assets/` folder rather than the OS application-data folder.
-
 ---
 
 ## Adding Media Files Manually
@@ -336,55 +271,4 @@ Instead of using the managers, you can place files directly:
 | National anthem | `assets/anthem.mp3` | Replace in place |
 | Flag image | `assets/american flag.jpg` | Replace in place |
 | Cover logo | `assets/logo.png` | Replace in place |
-| Program logo | `assets/branding/upward-scoreboard-logo.png` | Built-in app branding; separate from the cover logo |
-| Slideshow pictures | `assets/Pictures/` | `.jpg`, `.jpeg`, or `.png` |
-
----
-
-## Project Structure
-
-```text
-.
-├── app.py                         # Desktop launcher, local server, storage, and native windows
-├── Scoreboard Controller.html     # Main operator interface
-├── assets/
-│   ├── app.js                     # Controller behavior and game state
-│   ├── display.html               # Audience-facing scoreboard
-│   ├── display_app.js             # Display updates and overlays
-│   ├── team_editor.html/js        # Team, roster, and logo management
-│   ├── branding/                   # Program logo (not the replaceable cover logo)
-│   ├── music_manager.html/js      # Music and anthem management
-│   ├── cover_manager.html/js      # Flag and cover-logo management
-│   ├── introductions.html/js      # Player introductions
-│   └── pictures.html/js           # Full-screen picture management
-├── requirements.txt
-├── start_scoreboard.command       # macOS launcher
-├── start_scoreboard.bat           # Windows launcher
-└── start_scoreboard.sh            # Linux launcher
-```
-
-The app serves its local pages on `127.0.0.1:8765`. It does not expose the controller to other devices on the network.
-
----
-
-## Troubleshooting
-
-### `pywebview is not installed`
-
-Run the setup command for your platform again and launch the app with the Python executable inside `.venv`.
-
-### The display opens on the wrong screen
-
-Click **Open Display** in Display Tools and choose the desired monitor. Confirm that the operating system is using an extended desktop rather than screen mirroring.
-
-### A media button is disabled
-
-Open the related manager and add the required file. Disabled buttons include a hover hint explaining which asset is missing.
-
-### Linux opens no window or reports a WebKit/GTK error
-
-Install the Linux system packages listed in [Requirements](#linux), then reinstall the Python requirements inside `.venv`.
-
-### Port 8765 is already in use
-
-Close any other running copy of Upward Scoreboard, then launch it again.
+| Slideshow pictures | `assets/Pictures/` | `.jpg` or `.png` |
