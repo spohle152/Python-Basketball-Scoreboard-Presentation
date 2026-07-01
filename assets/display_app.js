@@ -81,6 +81,19 @@ function update_player_fouls_container() {
 
 setup_data_animations();
 
+// Hides the cover/countdown logo <img> elements when logo.png hasn't been
+// uploaded, so a missing file doesn't leave a broken-image placeholder.
+function watch_logo_images() {
+  document.querySelectorAll('img[src*="logo.png"]').forEach(function(img) {
+    img.addEventListener('error', function() { img.style.display = 'none'; });
+    img.addEventListener('load', function() { img.style.display = ''; });
+    if (img.complete && img.naturalWidth === 0) {
+      img.style.display = 'none';
+    }
+  });
+}
+watch_logo_images();
+
 window.addEventListener('load', function(event) {
   // Ask any open controller tab to resend its current state after the display
   // is opened or refreshed.
